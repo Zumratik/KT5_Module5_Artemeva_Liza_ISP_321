@@ -5,10 +5,42 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SportInventory.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ListMain">
+      d:DesignHeight="650" d:DesignWidth="1000"
+      Title="ИС по прокату спортивного инвентаря - Список">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView x:Name="List" VerticalAlignment="Center" HorizontalAlignment="Center" Width="850">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="350"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Surname ,StringFormat={} Фамилия: {0}}"></TextBlock>
+                            <TextBlock Text="{Binding Name ,StringFormat={} Имя: {0}}"></TextBlock>
+                            <TextBlock Text="{Binding Patronimic ,StringFormat={} Отчество: {0}}"></TextBlock>
+                            <TextBlock Text="{Binding Email ,StringFormat={} Email: {0}}"></TextBlock>
+                            <TextBlock Text="{Binding DataBerth ,StringFormat={} Дата рождения: {0}}"></TextBlock>
+                            
+                            <TextBlock Text="{Binding Telephpon ,StringFormat={} Номер: {0}}"></TextBlock>
+                            
+                        </StackPanel>
+                        <TextBlock Text="{Binding Role.Name ,StringFormat={} Роль: {0}}" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+
+        </ListView>
+        <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="Add" Margin="10" Content="Добавить" Click="Add_Click"></Button>
+        <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="Back" Margin="10" Content="Назад" Click="Back_Click"></Button>
     </Grid>
 </Page>

@@ -28,11 +28,11 @@ namespace SportInventory.Pages
         private void LogButton_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder error = new StringBuilder();
-            if (PasswordBox.Password == string.Empty)
+            if (string.IsNullOrEmpty(PasswordBox.Password))
             {
                 error.AppendLine("Введите пароль");
             } 
-            if (LoginBox.Text == string.Empty)
+            if (string.IsNullOrEmpty(LoginBox.Text))
             {
                 error.AppendLine("Введите логин");
             }
@@ -44,7 +44,7 @@ namespace SportInventory.Pages
             if (Data.SportEntities.GetContext().User.Any(d => d.Password == PasswordBox.Password && d.Login == LoginBox.Text))
             {
                 var user = Data.SportEntities.GetContext().User.Where(d => d.Password == PasswordBox.Password && d.Login == LoginBox.Text).FirstOrDefault();
-                Classes.Manager.MainFrame.Navigate(new Page.ListMain());
+                Classes.Manager.MainFrame.Navigate(new Pages.ListMain(user.Login.ToString()));
                 MessageBox.Show("Успех", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
