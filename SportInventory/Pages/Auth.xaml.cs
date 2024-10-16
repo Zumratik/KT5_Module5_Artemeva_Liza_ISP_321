@@ -24,5 +24,29 @@ namespace SportInventory.Pages
         {
             InitializeComponent();
         }
+
+        private void LogButton_Click(object sender, RoutedEventArgs e)
+        {
+            StringBuilder error = new StringBuilder();
+            if (PasswordBox.Password == string.Empty)
+            {
+                error.AppendLine("Введите пароль");
+            } 
+            if (LoginBox.Text == string.Empty)
+            {
+                error.AppendLine("Введите логин");
+            }
+            if (error.Length > 0)
+            {
+                MessageBox.Show(error.ToString(),"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                return;
+            }
+            if (Data.SportEntities.GetContext().User.Any(d => d.Password == PasswordBox.Password && d.Login == LoginBox.Text))
+            {
+                var user = Data.SportEntities.GetContext().User.Where(d => d.Password == PasswordBox.Password && d.Login == LoginBox.Text).FirstOrDefault();
+                Classes.Manager.MainFrame.Navigate(new Page.ListMain());
+                MessageBox.Show("Успех", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }

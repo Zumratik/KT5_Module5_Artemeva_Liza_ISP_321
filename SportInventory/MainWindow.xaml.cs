@@ -24,7 +24,7 @@ namespace SportInventory
         {
             InitializeComponent();
             Classes.Manager.MainFrame = MainFrame;
-            Classes.Manager.MainFrame.Navigate(new Pages.Auth);
+            Classes.Manager.MainFrame.Navigate(new Pages.Auth());
         }
     }
 }
